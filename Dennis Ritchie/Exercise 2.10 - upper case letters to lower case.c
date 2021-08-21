@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-int lower(int c);
+int lcase(int c);
 
 int main(void)
 {
@@ -8,7 +8,7 @@ int main(void)
     
     while((c=getchar())!=EOF)
     {
-        putchar(lower(c));
+        putchar(lcase(c));
     }
 }
 
