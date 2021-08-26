@@ -1,27 +1,25 @@
 
 #include<stdio.h>
-#define TNOCHAR 128  /* Total Number of characters is 128: 0 - 127 */
-
-int main(void)
+int main()
 {
     int c,i,j;
 
-    int character[TNOCHAR];
+    int char[100];
     
-    for(i=0;i<TNOCHAR;++i)
-        character[i] = 0;
+    for(i=0;i<100;i++)
+        char[i] = 0;
     
     while((c=getchar())!=EOF)
-        ++character[c];
+        ++char[c];
 
-    for(i=0;i<TNOCHAR;++i)
+    for(i=0;i<100;i++)
     {
         putchar(i);
-        
-        for(j=0;j<character[i];++j)
+        for(j=0;j<char[i];j++)
+        {
             putchar('*');
+        }
         
         putchar('\n');
     }
-return 0;
 }
