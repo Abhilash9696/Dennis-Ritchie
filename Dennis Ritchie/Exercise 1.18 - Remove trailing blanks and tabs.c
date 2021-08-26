@@ -1,26 +1,13 @@
+ /*This program removes the trailing blanks and tab spaces for a paragraph/line given as input. */
 #include<stdio.h>
 #define MAXLINE 1000
 
-int mgetline(char line[],int lim);
-int removetrail(char rline[]);
-
-int main(void)
+/*Reading input lines*/
+int getline(char s[],int lim)
 {
-  int len;
-  char line[MAXLINE];
-  
-  while((len=mgetline(line,MAXLINE))>0)
-    if(removetrail(line) > 0)
-      printf("%s",line);
+  int c, i;
 
-  return 0;
-}
-
-int mgetline(char s[],int lim)
-{
-  int i,c;
-
-  for(i=0;i<lim-1 && (c=getchar())!=EOF && c!='\n';++i)
+  for(i=0;i<lim-1 && (c=getchar())!=EOF && c!='\n';i++)
     s[i] = c;
   if( c == '\n')
   {
@@ -32,20 +19,19 @@ int mgetline(char s[],int lim)
   return i;
 }
 
-/* To remove Trailing Blanks,tabs. Go to End and proceed backwards removing */
 
-int removetrail(char s[])
+int RTBS(char s[])
 {
   int i;
 
   for(i=0; s[i]!='\n'; ++i)
     ;
-  --i;  /* To consider raw line without \n */
+  --i; 
 
   for(i >0; ((s[i] == ' ') || (s[i] =='\t'));--i)   
-    ; /* Removing the Trailing Blanks and Tab Spaces */
+    ;
 
-  if( i >= 0) /* Non Empty Line */
+  if( i >= 0)
   {
     ++i;
     s[i] = '\n';
@@ -54,3 +40,18 @@ int removetrail(char s[])
   }
   return i;
 }
+
+
+int main(void)
+{
+  int len;
+  char line[MAXLINE];
+  
+  while((len=getline(line,MAXLINE))>0)
+    if(RTBS(line) > 0)
+      printf("%s",line);//Prints the lines after removing trailing blanks tab spaces.
+
+  return 0;
+}
+
+
