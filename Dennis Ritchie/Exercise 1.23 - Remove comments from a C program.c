@@ -1,19 +1,34 @@
+/*This program reads a c code and removes the comments in the code*/
 #include<stdio.h>
 
-void rcomment(int c);
-void incomment(void);
-void echo_quote(int c);
+void echo_quote(int c)
+{
+    int d;
 
-int main(void)
+    putchar(c);
+    
+    while((d=getchar())!=c)
+    {
+        putchar(d);
+        
+        if(d = '\\')
+            putchar(getchar());
+    }
+    putchar(d);
+}
+
+void incomment()
 {
     int c,d;
+     
+    c = getchar();
+    d = getchar();
 
-    printf(" To Check /* Quoted String */ \n");
-
-    while((c=getchar())!=EOF)
-        rcomment(c);
-
-    return 0;
+    while(c!='*' || d !='/')
+    {
+        c =d;
+        d = getchar();
+    }
 }
 
 void rcomment(int c)
@@ -40,32 +55,19 @@ void rcomment(int c)
         putchar(c);
 }
 
-void incomment()
+
+int main(void)
 {
     int c,d;
-     
-    c = getchar();
-    d = getchar();
 
-    while(c!='*' || d !='/')
-    {
-        c =d;
-        d = getchar();
-    }
+    printf(" To Check /* Quoted String */ \n");
+
+    while((c=getchar())!=EOF)
+        rcomment(c);
+
+    return 0;
 }
 
-void echo_quote(int c)
-{
-    int d;
 
-    putchar(c);
-    
-    while((d=getchar())!=c)
-    {
-        putchar(d);
-        
-        if(d = '\\')
-            putchar(getchar());
-    }
-    putchar(d);
-}
+
+
