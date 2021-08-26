@@ -1,23 +1,6 @@
 #include <stdio.h>
 #define MAXLINE 1000 /* maximum input line length */
-int mgetline(char line[], int max);
-int strindex(char source[], char searchfor[]);
-char pattern[] = "ould"; /* pattern to search for */
-/* find all lines matching pattern */
-int main()
-{
-    char line[MAXLINE];
-    int found = 0;
-    while (mgetline(line, MAXLINE) > 0)
-        if (strindex(line, pattern) >= 0) {
-            printf("%s", line);
-            found++;
-        }
-        return found;
-}
-
-/* getline: get line into s, return length */
-int mgetline(char s[], int lim)
+int getline(char s[], int lim)
 {
     int c, i;
     i = 0;
@@ -28,9 +11,7 @@ int mgetline(char s[], int lim)
     s[i] = '\0';
     return i;
 }
-
-/* strindex: return index of t in s, -1 if none */
-int strindex(char s[], char t[])
+int get_index(char s[], char t[]) //Returns the index of s at which the pattern "ould" starts. -1 if no such pattern.
 {
     int i, j, k;
     for (i = 0; s[i] != '\0'; i++) {
@@ -41,3 +22,18 @@ int strindex(char s[], char t[])
     }
     return -1;
 }
+
+char pattern[] = "ould"; /* pattern to search for */
+/* find all lines matching pattern */
+int main()
+{
+    char line[MAXLINE];
+    int found = 0;
+    while (getline(line, MAXLINE) > 0)
+        if (get_index(line, pattern) >= 0) {
+            printf("%s", line);
+            found++;
+        }
+        return found;
+}
+
