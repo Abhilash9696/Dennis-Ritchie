@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+int small(int b)
+{
+    if(b>='A' && b<='Z')
+    {
+        return b+'a'-'A';
+    }
+    else
+        return b;
+}
+
+int main(void)
+{
+    int c;
+    
+    while((c=getchar())!=EOF)
+    {
+        int a = small(c);
+        putchar(a);
+    }
+}
+
